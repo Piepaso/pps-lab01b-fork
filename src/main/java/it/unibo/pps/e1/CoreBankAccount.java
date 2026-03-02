@@ -13,6 +13,13 @@ class CoreBankAccount {
     }
 
     public void withdraw(int amount) {
+        if (!isWithdrawAllowed(amount)){
+            throw new IllegalStateException();
+        }
         this.balance = this.balance - amount;
+    }
+
+    private boolean isWithdrawAllowed(int amount) {
+        return amount >= 0 && amount <= this.getBalance();
     }
 }

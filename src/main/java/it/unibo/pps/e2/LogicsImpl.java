@@ -3,46 +3,40 @@ package it.unibo.pps.e2;
 import java.util.*;
 
 public class LogicsImpl implements Logics {
-	
-	private final Pair<Integer,Integer> pawn;
-	private Pair<Integer,Integer> knight;
-	private final Random random = new Random();
-	private final int size;
+
+	private final Piece pawn;
+	private final Piece knight;
+    private final Grid grid;
 	 
     public LogicsImpl(int size){
-    	this.size = size;
-        this.pawn = this.randomEmptyPosition();
-        this.knight = this.randomEmptyPosition();	
+    	grid = new SquareGrid(size);
+        this.pawn = new Pawn(grid.getNewRandomPos());
+        this.knight = new Knight(grid.getNewRandomPos());
     }
-    
-	private final Pair<Integer,Integer> randomEmptyPosition(){
-    	Pair<Integer,Integer> pos = new Pair<>(this.random.nextInt(size),this.random.nextInt(size));
-    	// the recursive call below prevents clash with an existing pawn
-    	return this.pawn!=null && this.pawn.equals(pos) ? randomEmptyPosition() : pos;
+
+    public LogicsImpl(int size, Pair<Integer, Integer> pawnPosition, Pair<Integer, Integer> knightPosition) {
+        grid = new SquareGrid(size);
+        this.pawn = new Pawn(pawnPosition);
+        this.knight = new Knight(knightPosition);
     }
+
     
 	@Override
 	public boolean hit(int row, int col) {
-		if (row<0 || col<0 || row >= this.size || col >= this.size) {
+        var newPosition = new Pair<>(row,col);
+		if (!grid.belongsToTheGrid(newPosition)) {
 			throw new IndexOutOfBoundsException();
 		}
-		// Below a compact way to express allowed moves for the knight
-		int x = row-this.knight.getX();
-		int y = col-this.knight.getY();
-		if (x!=0 && y!=0 && Math.abs(x)+Math.abs(y)==3) {
-			this.knight = new Pair<>(row,col);
-			return this.pawn.equals(this.knight);
-		}
-		return false;
+        return knight.move(newPosition) && this.pawn.getPosition().equals(this.knight.getPosition());
 	}
 
 	@Override
 	public boolean hasKnight(int row, int col) {
-		return this.knight.equals(new Pair<>(row,col));
+		return this.knight.getPosition().equals(new Pair<>(row,col));
 	}
 
 	@Override
 	public boolean hasPawn(int row, int col) {
-		return this.pawn.equals(new Pair<>(row,col));
+		return this.pawn.getPosition().equals(new Pair<>(row,col));
 	}
 }

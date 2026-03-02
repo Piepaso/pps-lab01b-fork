@@ -2,6 +2,12 @@ package it.unibo.pps.e1;
 
 public class BankAccount {
 
+    private final int fee;
+
+    public BankAccount(int fee) {
+        this.fee = fee;
+    }
+
     private CoreBankAccount base = new CoreBankAccount();
 
     public int getBalance() {
@@ -13,9 +19,7 @@ public class BankAccount {
     }
 
     public void withdraw(int amount) {
-        if (this.getBalance() < amount){
-            throw new IllegalStateException();
-        }
-        base.withdraw(amount + 1);
+        base.withdraw(amount + fee);
     }
+
 }

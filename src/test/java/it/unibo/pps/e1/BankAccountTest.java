@@ -9,11 +9,12 @@ import static org.junit.jupiter.api.Assertions.assertThrows;
 
 public class BankAccountTest {
 
+    private final int FEE = 1;
     private BankAccount account;
 
     @BeforeEach
     void init(){
-        this.account = new BankAccount();
+        this.account = new BankAccount(FEE);
     }
 
     @Test
