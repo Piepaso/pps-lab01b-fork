@@ -1,4 +1,4 @@
-package it.unibo.pps.e2;
+package it.unibo.pps.e2.logics;
 
 public interface Logics{
     

@@ -1,25 +1,11 @@
 package it.unibo.pps.e1;
 
-public class BankAccount {
+public interface BankAccount {
 
-    private final int fee;
+	int getBalance();
 
-    public BankAccount(int fee) {
-        this.fee = fee;
-    }
+	void deposit(int amount);
 
-    private CoreBankAccount base = new CoreBankAccount();
-
-    public int getBalance() {
-        return base.getBalance();
-    }
-
-    public void deposit(int amount) {
-        base.deposit(amount);
-    }
-
-    public void withdraw(int amount) {
-        base.withdraw(amount + fee);
-    }
+	void withdraw(int amount);
 
 }
