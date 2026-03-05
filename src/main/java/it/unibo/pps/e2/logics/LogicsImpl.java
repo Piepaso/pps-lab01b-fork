@@ -1,9 +1,9 @@
 package it.unibo.pps.e2.logics;
 
-import it.unibo.pps.e2.grid.Grid;
-import it.unibo.pps.e2.grid.Pair;
-import it.unibo.pps.e2.grid.Position;
-import it.unibo.pps.e2.grid.SquareGrid;
+import it.unibo.pps.grid.Grid;
+import it.unibo.pps.grid.Pair;
+import it.unibo.pps.grid.Position;
+import it.unibo.pps.grid.SquareGrid;
 import it.unibo.pps.e2.pieces.Knight;
 import it.unibo.pps.e2.pieces.Pawn;
 import it.unibo.pps.e2.pieces.Piece;

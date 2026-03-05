@@ -1,5 +1,5 @@
 package it.unibo.pps.e2.logics;
-import it.unibo.pps.e2.grid.Pair;
+import it.unibo.pps.grid.Pair;
 import org.junit.jupiter.api.*;
 
 import java.util.function.BiPredicate;

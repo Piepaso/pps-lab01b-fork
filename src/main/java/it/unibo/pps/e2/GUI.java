@@ -1,6 +1,6 @@
 package it.unibo.pps.e2;
 
-import it.unibo.pps.e2.grid.Pair;
+import it.unibo.pps.grid.Pair;
 import it.unibo.pps.e2.logics.Logics;
 import it.unibo.pps.e2.logics.LogicsImpl;
 
